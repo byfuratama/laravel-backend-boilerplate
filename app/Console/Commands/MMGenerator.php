@@ -28,7 +28,7 @@ class MMGenerator extends Command
 
         $this->deleteMM();
         for ($i=0; $i < count($mm); $i++) {
-            $table = $mm[$i]->getTable();
+            $table = Str::snake($mm[$i]->getTable());
 
             $name = "mm_{$table}_table";
             $body = $mm[$i]->toMigration();

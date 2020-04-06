@@ -4,10 +4,10 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Kategori extends Model
+class Satuan extends Model
 {
     use \Illuminate\Database\Eloquent\SoftDeletes;
-    protected $table = 'kategori';
+    protected $table = 'satuan';
     
     protected $fillable = ['id','nama','keterangan'];
     

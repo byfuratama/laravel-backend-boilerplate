@@ -17,6 +17,8 @@ class MmKategoriTable extends Migration
             $table->increments('id');
             $table->string('nama');
             $table->string('keterangan');
+            $table->timestamps();
+            $table->softDeletes();
             
         });
     }

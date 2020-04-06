@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class MmItemTable extends Migration
+class MmSatuanTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,12 @@ class MmItemTable extends Migration
      */
     public function up()
     {
-        Schema::create('item', function (Blueprint $table) {
+        Schema::create('satuan', function (Blueprint $table) {
             $table->increments('id');
             $table->string('nama');
-            $table->unsignedInteger('kategori_id');
-            $table->string('status');
+            $table->string('keterangan');
+            $table->timestamps();
+            $table->softDeletes();
             
         });
     }
@@ -29,6 +30,6 @@ class MmItemTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('item');
+        Schema::dropIfExists('satuan');
     }
 }
