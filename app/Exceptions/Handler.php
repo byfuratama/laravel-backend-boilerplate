@@ -3,7 +3,10 @@
 namespace App\Exceptions;
 
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
+use Illuminate\Validation\ValidationException;
+use Illuminate\Auth\AuthenticationException;
 use Throwable;
+use App\Helpers\Jsend;
 
 class Handler extends ExceptionHandler
 {
@@ -25,6 +28,21 @@ class Handler extends ExceptionHandler
         'password',
         'password_confirmation',
     ];
+
+    protected function invalidJson($request, ValidationException $exception)
+    {
+        return Jsend::error([
+            'message' => $exception->getMessage(),
+            'errors' => $exception->errors(),
+        ], $exception->status);
+    }
+
+    protected function unauthenticated($request, AuthenticationException $exception)
+    {
+        return $request->expectsJson()
+                    ? Jsend::fail(['message' => $exception->getMessage()], 401)
+                    : redirect()->guest($exception->redirectTo() ?? route('login'));
+    }
 
     /**
      * Report or log an exception.

@@ -5,6 +5,7 @@ namespace {{ namespace }};
 use {{ namespacedModel }};
 use {{ rootNamespace }}Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Helper\Jsend;
 
 class {{ class }} extends Controller
 {

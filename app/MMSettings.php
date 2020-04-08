@@ -8,33 +8,33 @@ class MMSettings extends MM {
     public static function generate()
     {
 
-        $item = new MM('item');
-        $item->field('id','increments');
-        $item->field('nama','string');
-        $item->field('kategori_id','unsignedInteger');
-        $item->field('status','string');
-        $item->softDeletes();
+        $mm = new MM('item');
+        $mm->field('id','increments');
+        $mm->field('nama','string');
+        $mm->field('kategori_id','unsignedInteger');
+        $mm->field('status','string');
+        $mm->softDeletes();
 
-        $kategori = new MM('kategori');
-        $kategori->field('id','increments');
-        $kategori->field('nama','string');
-        $kategori->field('keterangan','string');
-        $kategori->softDeletes();
+        $mm = new MM('kategori');
+        $mm->field('id','increments');
+        $mm->field('nama','string');
+        $mm->field('keterangan','string');
+        $mm->softDeletes();
 
-        $satuan = new MM('satuan');
-        $satuan->field('id','increments');
-        $satuan->field('nama','string');
-        $satuan->field('keterangan','string');
-        $satuan->softDeletes();
+        $mm = new MM('satuan');
+        $mm->field('id','increments');
+        $mm->field('nama','string');
+        $mm->field('keterangan','string');
+        $mm->softDeletes();
 
-        $satuan = new MM('Item Satuan');
-        $satuan->field('item_id','unsignedInteger');
-        $satuan->field('satuan_id','unsignedInteger');
-        $satuan->field('harga_beli','decimal', 12, 3)->default(0.0);
-        $satuan->field('harga_jual','decimal', 12, 3)->nullable();
-        $satuan->field('konversi','decimal', 8, 2);
-        $satuan->primaryKeys('item_id','satuan_id');
-        $satuan->softDeletes();
+        $mm = new MM('Item Satuan');
+        $mm->field('item_id','unsignedInteger');
+        $mm->field('satuan_id','unsignedInteger');
+        $mm->field('harga_beli','decimal', 12, 3)->default(0.0);
+        $mm->field('harga_jual','decimal', 12, 3)->nullable();
+        $mm->field('konversi','decimal', 8, 2);
+        $mm->primaryKeys('item_id','satuan_id');
+        $mm->softDeletes();
     }
 
 }
