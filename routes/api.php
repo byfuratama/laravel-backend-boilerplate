@@ -27,6 +27,18 @@ Route::group([
 
 });
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
+Route::group([
+
+    'middleware' => 'auth:api',
+
+], function ($router) {
+
+    Route::apiResource('kategori', 'KategoriController')->except([
+        // 'create', 'store', 'update', 'destroy'
+    ]);
+
+});
+
+Route::middleware('api')->get('/user', function (Request $request) {
     return $request->user();
 });

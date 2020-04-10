@@ -6,6 +6,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class {{ name }} extends Model
 {
+    
+    use \App\Helpers\ModelHelper;
+
     protected $table = '{{ table }}';
     
     protected $fillable = [{{ fillable }}];
