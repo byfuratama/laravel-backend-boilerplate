@@ -14,21 +14,31 @@ class DatabaseSeeder extends Seeder
         DB::table('users')->truncate();
         DB::table('users')->insert([
             [
-                'email' => 'superadmin',
+                'username' => 'superadmin',
                 'name' => 'superadmin',
                 'password' => bcrypt('5up3r'),
+                'role' => 'superadmin',
                 
             ],
             [
-                'email' => 'admin',
+                'username' => 'admin',
                 'name' => 'admin',
                 'password' => bcrypt('admin'),
+                'role' => 'admin',
                 
             ],
             [
-                'email' => 'kasir',
+                'username' => 'kasir',
                 'name' => 'kasir',
                 'password' => bcrypt('kasir'),
+                'role' => 'staff',
+                
+            ],
+            [
+                'username' => 'user',
+                'name' => 'user',
+                'password' => bcrypt('user'),
+                'role' => 'user',
                 
             ],
         ]);

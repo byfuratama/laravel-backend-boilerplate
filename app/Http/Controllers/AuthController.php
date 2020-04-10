@@ -25,13 +25,16 @@ class AuthController extends Controller
      */
     public function login()
     {
-        $credentials = request(['email', 'password']);
+        $credentials = request(['username', 'password']);
 
-        if (! $token = auth()->attempt($credentials)) {
-            return Jsend::fail(['error' => 'Unauthorized'], 401);
+        if (auth()->validate($credentials)) {
+            $token = auth()->attempt($credentials);
+            $role = auth()->user()->role;
+            $token = auth()->claims(['role' => $role])->attempt($credentials);
+            return $this->respondWithToken($token);
         }
 
-        return $this->respondWithToken($token);
+        return Jsend::fail(['error' => 'Unauthorized'], 401);
     }
 
     /**

@@ -28,14 +28,18 @@ Route::group([
 });
 
 Route::group([
-
     'middleware' => 'auth:api',
-
 ], function ($router) {
 
-    Route::apiResource('kategori', 'KategoriController')->except([
-        // 'create', 'store', 'update', 'destroy'
-    ]);
+    $basic_routes = function($name, $controller) {
+        Route::apiResource($name, $controller);
+        Route::apiResource($name, $controller)->only([
+            'create', 'store', 'update', 'destroy'
+        ])->middleware('role:admin');
+    };
+
+    $basic_routes('kategori', 'KategoriController');
+
 
 });
 

@@ -42,7 +42,7 @@ class Jsend
 
     public static function success($data = [], $status = null, $extra_headers = [])
     {
-        if (!is_array($data)) {
+        if (!is_array($data) && !is_object($data)) {
             $data = ['message' => $data];
         }
 
